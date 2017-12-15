@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">myContract</string>
+    <string name="Select">Select</string>
+    <string name="contract_name_hint">Input Your Contract Name Here</string>
+    <string name="contract_content_hint">Input The Contract Content Here</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
