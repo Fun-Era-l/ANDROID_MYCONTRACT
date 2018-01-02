@@ -9,13 +9,13 @@ import java.util.*
 class User() : DataSupport(){
     var user_name : String = ""
     var register_time : Date = Date()
-    var phone_number: Long = 0
+    var phone_number: String=""
     init
     {
         var time_calendar: Calendar = Calendar.getInstance()
         register_time = time_calendar.getTime()
     }
-    constructor(name:String, p_number: Long = 0):this() {
+    constructor(name:String, p_number: String):this() {
         this.user_name = name
         this.phone_number = p_number
     }
