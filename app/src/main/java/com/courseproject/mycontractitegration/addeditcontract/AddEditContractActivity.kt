@@ -68,7 +68,6 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
                 contentEditText.setText(mContract.content)
                 TextWithImage().show(contentEditText,mContract.content,this@AddEditContractActivity)
                 EditTextInputControl().disableShowSoftInput(contentEditText)
-                Log.d("TAG","FUCKYOU HERE!")
             }
             else {
                 val contract_title: String = mContract.title
