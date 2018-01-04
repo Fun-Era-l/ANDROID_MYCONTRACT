@@ -15,13 +15,8 @@ class AddEditContractPresenter(contractDataSource: ContractDataSource,view:AddEd
     }
 
 
-    override fun onContractSaved(isSucceeded:Boolean) {
-       if(isSucceeded) {
+    override fun onContractSaved() {
            mView.saveSucceeded()
-       }
-       else {
-           mView.saveFailed()
-       }
     }
 
     override fun onContractUpdated(updatedContractTitle:String) {

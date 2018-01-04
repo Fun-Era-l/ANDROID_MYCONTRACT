@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.courseProject.mycontract.ShowTemplateList.TemplateListActivity">
+    tools:context="com.courseproject.mycontractitegration.showTemplateList.TemplateListActivity">
 <ListView
     android:id="@+id/template_list"
     android:layout_width="match_parent"
