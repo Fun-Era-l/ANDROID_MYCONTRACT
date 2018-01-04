@@ -9,6 +9,7 @@ class Contract(): DataSupport(),Serializable {
     var id: Long = 0
     var title: String = ""
     var content: String = ""
+    var signed:Boolean = false
     constructor(title:String = "",content:String = ""):this()
     {
         id = 0

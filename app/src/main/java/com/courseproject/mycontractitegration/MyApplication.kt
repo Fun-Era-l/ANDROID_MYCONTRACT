@@ -6,11 +6,11 @@ import android.content.Context
 import org.litepal.LitePal
 
 class MyApplication: Application() {
-    lateinit var context: Context
+    var context: Context? = null
+
     override fun onCreate() {
         super.onCreate()
         context = getApplicationContext()
         LitePal.initialize(context)
-
     }
 }

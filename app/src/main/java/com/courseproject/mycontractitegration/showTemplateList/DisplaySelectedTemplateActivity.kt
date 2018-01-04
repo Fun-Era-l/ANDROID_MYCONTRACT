@@ -3,6 +3,7 @@ package com.courseproject.mycontractitegration.showTemplateList
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.ActionBar
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -18,9 +19,15 @@ class DisplaySelectedTemplateActivity : AppCompatActivity() {
     lateinit var mTemplateContent:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("DIs","request2")
         setContentView(R.layout.display_selected_template_act)
-        Log.d("DIs","request3")
+        /*
+        * 去除actionbar
+        **/
+        val actBar: ActionBar? = supportActionBar
+        if(actBar != null)
+        {
+            actBar.hide()
+        }
         mTemplateName = findViewById(R.id.display_template_name)
         mTemplateContent = findViewById(R.id.display_template_content)
         templateItem = intent.getSerializableExtra("SelectedItem") as? Template

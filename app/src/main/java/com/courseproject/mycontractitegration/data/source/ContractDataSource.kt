@@ -5,7 +5,7 @@ import com.courseproject.mycontractitegration.data.Contract
 interface ContractDataSource {
 
     interface SaveContractCallback {
-        fun onContractSaved(isSucceeded: Boolean)
+        fun onContractSaved()
         fun onContractUpdated(updatedContractTitle:String)
         fun onContractFailToSave()
         fun onContractFailToUpdate(updatedContractTitle:String)
@@ -17,6 +17,12 @@ interface ContractDataSource {
         fun onContractsNotAvailable()
     }
 
+    interface SignContractCallBack
+    {
+        fun onContractIsSigned()
+        fun onSignFailed()
+    }
+    fun signContract(title: String,callback: SignContractCallBack)
     fun getContracts(callback: loadContractsCallback)
     fun saveContract(title:String, content:String,callback:SaveContractCallback)
 }

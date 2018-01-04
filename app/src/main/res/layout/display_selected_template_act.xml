@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.courseProject.mycontract.ShowTemplateList.DisplaySelectedTemplateActivity">
+    tools:context="com.courseproject.mycontractitegration.showTemplateList.DisplaySelectedTemplateActivity">
 <TextView
     android:id="@+id/display_template_name"
     android:layout_width="match_parent"

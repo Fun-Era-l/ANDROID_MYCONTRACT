@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.courseproject.mycontractitegration.signContract.SignContractActivity">
+    <include layout="@layout/titlebar_withcheckbutton" />
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/sign_edit_area"
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp">
+            <!--<include layout="@layout/titlebar_withcheckbutton"/>-->
+            <TextView
+                android:id="@+id/sign_contract_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="EMPTY-TITLE"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <EditText
+                android:hint="EMPTY-CONTENT"
+                android:id="@+id/sign_contract_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+
+                />
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/sign_here_button"
+        android:text="在光标处签名"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        />
+</android.widget.LinearLayout>
