@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
     <dbname value="Contract"></dbname>
+
     <version value="13"></version>
+
     <list>
         <mapping class="com.courseproject.mycontractitegration.data.User"></mapping>
         <mapping class="com.courseproject.mycontractitegration.data.Template"></mapping>
         <mapping class="com.courseproject.mycontractitegration.data.Contract"></mapping>
         <mapping class="com.courseproject.mycontractitegration.data.Signature"></mapping>
         <mapping class="com.courseproject.mycontractitegration.data.relationship.Contract_Signature"></mapping>
+        <mapping class="com.courseproject.mycontractitegration.data.Friend"></mapping>
 
     </list>
 </litepal>

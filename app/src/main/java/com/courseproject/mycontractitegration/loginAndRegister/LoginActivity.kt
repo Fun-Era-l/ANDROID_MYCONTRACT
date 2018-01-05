@@ -10,11 +10,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import cn.bmob.newim.BmobIM
 import cn.bmob.v3.Bmob
 import cn.bmob.v3.BmobUser
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.LogInListener
+import com.courseproject.mycontractitegration.MessageHandler
 import com.courseproject.mycontractitegration.R
+import com.courseproject.mycontractitegration.friendManage.FriendListActivity
 import com.courseproject.mycontractitegration.showContractList.ContractListActivity
 import com.courseproject.mycontractitegration.showTemplateList.TemplateListActivity
 
@@ -23,8 +26,10 @@ public class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        val bmobAppKey:String = this.getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.getString("BMOB_APP_KEY")
-        Bmob.initialize(this,bmobAppKey);
+        //val bmobAppKey:String = this.getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.getString("Bmob_APP_KEY")
+        //Bmob.initialize(this,bmobAppKey);
+        //BmobIM.init(this);
+        //BmobIM.registerDefaultMessageHandler(MessageHandler());
         var button:Button = findViewById<Button>(R.id.button_login);
         var register: TextView =findViewById<TextView>(R.id.textview_register);
         val phone: EditText = findViewById<EditText>(R.id.edittext_phone);
@@ -40,7 +45,7 @@ public class LoginActivity : AppCompatActivity() {
                         val userTemp:BmobUser? = user
                         Log.d("fuck","${userTemp?.mobilePhoneNumber}")
                         if (userTemp != null){
-                            var intent =Intent(this@LoginActivity, ContractListActivity::class.java)
+                            var intent =Intent(this@LoginActivity, FriendListActivity::class.java)
                             Log.d("fuck","test")
                             startActivity(intent)
                         }

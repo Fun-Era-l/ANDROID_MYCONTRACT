@@ -40,10 +40,12 @@ dependencies {
     implementation files('libs/picasso-2.5.2.jar')
     //本地Bmob 包依赖
     implementation files('libs/BmobSDK_3.5.8_20171013.jar')
-
     implementation files('libs/BmobNewIM_2.0.9_20170731.jar')
     implementation files('libs/androidasync-2.1.6.jar')
 
+    //implementation files('libs/BmobNewIM_2.0.9_20170731.jar')
+    //implementation files('libs/androidasync-2.1.6.jar')
+    compile 'com.github.promeg:tinypinyin:2.0.3' // TinyPinyin 核心包，约 80KB
     //bmob 依赖
     //implementation 'cn.bmob.android:http-legacy:1.0'
     //implementation 'cn.bmob.android:bmob-sdk:3.5.6'
@@ -61,4 +63,7 @@ dependencies {
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8c649892401751fd426352aa0550d0fe27242809
