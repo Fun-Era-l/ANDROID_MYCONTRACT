@@ -13,6 +13,7 @@ import com.courseproject.mycontractitegration.R
 import com.courseproject.mycontractitegration.addSignature.AddSignatureActivity
 import com.courseproject.mycontractitegration.data.Signature
 import com.courseproject.mycontractitegration.data.source.repository.SignatureLocalDataSource
+import com.courseproject.mycontractitegration.showContractList.ContractListActivity
 
 class SignatureListActivity : AppCompatActivity(),SignatureListVP.View {
 
@@ -59,13 +60,19 @@ class SignatureListActivity : AppCompatActivity(),SignatureListVP.View {
     override fun showEmptyListWarning() {
         Toast.makeText(this@SignatureListActivity,"No Signture Found In Database Yet",Toast.LENGTH_SHORT).show()
     }
-
     override fun showSignatureList(signatureList: List<Signature>) {
         var mSignatureAdapter = SignatureAdapter(this,R.layout.signature_item, signatureList)
         var mSignatureListView : ListView = findViewById(R.id.signature_list)
         mSignatureListView.adapter = mSignatureAdapter;
     }
-
+/*
+重写在签名列表活动下的系统返回键，直接返回到主界面
+ */
+override fun onBackPressed() {
+    val siglist2Entrance:Intent = Intent(this@SignatureListActivity,ContractListActivity::class.java)
+    startActivity(siglist2Entrance)
+    super.onBackPressed()
+    }
     override fun setPresenter(presenter: SignatureListVP.Presenter) {
         val sig_presenter = SignatureListPresenter(SignatureLocalDataSource().getInstance(), this)
         this.mPresenter = sig_presenter
