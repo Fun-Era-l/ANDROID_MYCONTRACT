@@ -8,8 +8,11 @@
 
          />
     <item
+        android:id="@+id/delete_order"
+        android:title="取消订单"
+        />
+    <item
         android:id="@+id/edit_order"
         android:title="编辑订单"
-
         />
 </menu>

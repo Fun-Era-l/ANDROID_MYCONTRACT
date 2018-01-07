@@ -57,41 +57,51 @@
             android:name=".showContractList.ContractListActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".addeditcontract.AddEditContractActivity" />
+        <activity android:name=".addeditcontract.AddEditContractActivity"
+            android:label="编辑合同"/>
         <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> -->
 
         <activity
             android:name=".showTemplateList.TemplateListActivity"
-            android:label="Template List" />
+            android:label="模板列表" />
         <activity
             android:name=".showTemplateList.DisplaySelectedTemplateActivity"
-            android:label=""
+            android:label="当前模板"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".loginAndRegister.LoginActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".loginAndRegister.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".loginAndRegister.RegisterActivity" />
-        <activity android:name=".addSignature.AddSignatureActivity" />
-        <activity android:name=".showSignatureList.SignatureListActivity" />
-        <activity android:name=".showSignatureList.SelectedSignatureActivity" />
+        <activity android:name=".addSignature.AddSignatureActivity"
+            android:label="手写签名"
+            />
+        <activity android:name=".showSignatureList.SignatureListActivity"
+            android:label="我的签名"/>
+        <activity android:name=".showSignatureList.SelectedSignatureActivity"
+            android:label="当前签名"/>
         <activity
             android:name=".signContract.SignContractActivity"
+            android:label="合同签名"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity android:name=".friendManage.FriendListActivity" />
         <activity android:name=".friendManage.AddFriendActivity" />
         <activity android:name=".sendMessage.ChatActivity" />
-        <activity android:name=".OrderManagement.OrderListActivity">
-        </activity>
+        <activity android:name=".OrderManagement.OrderListActivity"
+            android:label="代写服务订单"
+            ></activity>
         <activity
             android:name=".OrderManagement.DisplayOrderActivity"
-            android:label="@string/title_activity_display_order"
+            android:label="订单详情"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".OrderManagement.AddEditOrderActivity"
+        <activity
+            android:name=".OrderManagement.AddEditOrderActivity"
+            android:label="订单编辑"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".issueHandler.IssueActivity"></activity>
     </application>
 
 </manifest>
