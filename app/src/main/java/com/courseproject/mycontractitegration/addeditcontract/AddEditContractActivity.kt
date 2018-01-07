@@ -47,7 +47,6 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
         mPresenter= AddEditContractPresenter(ContractLocalDataSource().getInstance(),this)
         val mTemplate: Template? = intent.getSerializableExtra("ConfirmedItem") as Template?
         val mContract: Contract? = intent.getSerializableExtra("ContractToEdit") as Contract?
-        //var mContract:Contract = Contract("testTITLE","jfkads;furiqeworhgajsjfkrquoghajafkljqiewursjfsa;jfqkjweporqfjakldsTTTT<img src='7722e9e59f'/>TTTTfkuzovzncv,mafjsklajfiourqgaksjdfkjaskffjaskdfjkasuifkasjdfioajiqewo<img src='118a5ffc3d'/>rhgajsjfkrquoghajafkljqiewursjfsa;jfqkjweporqfjakldsjfkuzovzncvfjaksdfjaksjfas;jfiourqgjkj<img src='6fed91b73e'/>ieriqeworhgajsjfkrquoghajafkljqiewursjfsa;jfqkjweporqfjakldsjfkuzovzncv,")
 
         contentEditText = findViewById(R.id.add_contract_content)
         titleEditText = findViewById(R.id.add_contract_title)
@@ -78,7 +77,6 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
             }
 
         }
-        Log.d("TAG","WHAT THE FUCK")
     }
     /*
     添加包含 完成编辑 和 签名选项的菜单

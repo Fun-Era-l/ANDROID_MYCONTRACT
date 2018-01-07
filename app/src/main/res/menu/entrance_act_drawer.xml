@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_signature"
+            android:icon="@drawable/ic_menu_signature"
+            android:title="@string/my_signature" />
+        <item
+            android:id="@+id/nav_templates"
+            android:icon="@drawable/ic_menu_template"
+            android:title="@string/my_template" />
+        <item
+            android:id="@+id/nav_contacts"
+            android:icon="@drawable/ic_menu_contacts"
+            android:title="@string/my_contacts" />
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_menu_order"
+            android:title="@string/my_order" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/nav_lawyer_option"
+                android:icon="@drawable/ic_menu_share"
+                android:title="律师选项" />
+            <item
+                android:id="@+id/nav_to_be_lawyer"
+                android:icon="@drawable/ic_menu_send"
+                android:title="成为平台律师" />
+        </menu>
+    </item>
+
+</menu>
