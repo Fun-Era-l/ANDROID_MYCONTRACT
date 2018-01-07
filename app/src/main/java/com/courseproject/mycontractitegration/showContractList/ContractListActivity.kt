@@ -71,6 +71,7 @@ class ContractListActivity : AppCompatActivity(),ContractListVP.View, Navigation
         contract_list_nav_view.setNavigationItemSelectedListener(this)
     }
 
+
     override fun showContractList(tempList: List<Contract>) {
         val mContractAdapter = ContractAdapter(this,R.layout.contract_item,tempList)
         //val mContractListView : ListView = findViewById(R.id.contract_list)
@@ -88,7 +89,6 @@ class ContractListActivity : AppCompatActivity(),ContractListVP.View, Navigation
         if ( contract_list_drawer_layout.isDrawerOpen(GravityCompat.START)) {
              contract_list_drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
         }
     }
 
@@ -99,9 +99,6 @@ class ContractListActivity : AppCompatActivity(),ContractListVP.View, Navigation
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_settings -> return true
             else -> return super.onOptionsItemSelected(item)
@@ -109,7 +106,6 @@ class ContractListActivity : AppCompatActivity(),ContractListVP.View, Navigation
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
         when (item.itemId) {
                 R.id.nav_signature -> {
                    val nav2SignatureList:Intent = Intent(this@ContractListActivity,SignatureListActivity::class.java)

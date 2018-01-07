@@ -38,6 +38,8 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
     lateinit var mPresenter:AddEditContractVP.Presenter
     lateinit  var contentEditText: EditText
     lateinit var titleEditText :EditText
+    var mContract:Contract? = null
+    var mTemplate:Template? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -45,44 +47,50 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
 
         //取出使用的模板或者待编辑的合同内容  并在Content区域显示
         mPresenter= AddEditContractPresenter(ContractLocalDataSource().getInstance(),this)
-        val mTemplate: Template? = intent.getSerializableExtra("ConfirmedItem") as Template?
-        val mContract: Contract? = intent.getSerializableExtra("ContractToEdit") as Contract?
+        mTemplate  = intent.getSerializableExtra("ConfirmedItem") as Template?
+        mContract = intent.getSerializableExtra("ContractToEdit") as Contract?
 
         contentEditText = findViewById(R.id.add_contract_content)
         titleEditText = findViewById(R.id.add_contract_title)
         if(mTemplate != null) {
-            val template_content: String = mTemplate.template_content
-            val template_title:String = mTemplate.template_name
+            val template_content: String = mTemplate?.template_content!!
+            val template_title:String = mTemplate?.template_name!!
             titleEditText.setText(template_title.toCharArray(),0,template_title.length)
             contentEditText.setText(template_content.toCharArray(), 0, template_content.length)
         }
         if(mContract != null) {
-            if(mContract.signed)
+            /*
+            对合同进行二次编辑时，不允许修改合同名称，若合同已签名则关闭合同的编辑功能；
+             */
+            if(mContract?.signed!!)
             {
-                //showTextImage(mContract.content,add_contract_content)
-                /*测试textImage*/
-                //var string:String = "jfkads;furiqeworhgajsjfkrquoghajafkljqiewursjfsa;jfqkjweporqfjakldsTTTT<img src='7722e9e59f'/>TTTTfkuzovzncv,mafjsklajfiourqgaksjdfkjaskffjaskdfjkasuifkasjdfioajiqewo<img src='490b9beda1'/>rhgajsjfkrquoghajafkljqiewursjfsa;jfqkjweporqfjakldsjfkuzovzncvfjaksdfjaksjfas;jfiourqgjkjieriqeworhgajsjfkrquoghajafkljqiewursjfsa;jfqkjweporqfjakldsjfkuzovzncv,"
-                titleEditText.setText(mContract.title)
+                titleEditText.setText(mContract?.title)
                 titleEditText.inputType = InputType.TYPE_NULL
-                contentEditText.setText(mContract.content)
-                TextWithImage().show(contentEditText,mContract.content,this@AddEditContractActivity)
+                contentEditText.setText(mContract?.content)
+                TextWithImage().show(contentEditText,mContract?.content!!,this@AddEditContractActivity)
                 EditTextInputControl().disableShowSoftInput(contentEditText)
-            }
-            else {
-                val contract_title: String = mContract.title
-                val contract_content: String = mContract.content
+            } else {
+                val contract_title: String = mContract?.title!!
+                val contract_content: String = mContract?.content!!
                 titleEditText.setText(contract_title.toCharArray(), 0, contract_title.length)
                 EditTextInputControl().EditControl(false, titleEditText)
                 contentEditText.setText(contract_content.toCharArray(), 0, contract_content.length)
             }
-
         }
     }
-    /*
-    添加包含 完成编辑 和 签名选项的菜单
-     */
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_edit_contract,menu)
+        /*
+        新建合同不能被删除或签名 / 已签名合同不能再签名
+         */
+        if(mTemplate != null){
+            menu?.removeItem(R.id.delete_contract)
+            menu?.removeItem(R.id.sign_contract)
+        }
+        if(mContract != null && mContract?.signed!!){
+            menu?.removeItem(R.id.sign_contract)
+        }
         return true
     }
 
@@ -102,6 +110,9 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
                 edit2Sign.putExtra("ContractToSign",contractToSign)
                 startActivity(edit2Sign)
             }
+            R.id.delete_contract->{
+                mPresenter.deleteContract(mContract?.id!!)
+            }
             else->return true
         }
         return false
@@ -113,7 +124,7 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
         mPresenter = presenter
     }
     override fun saveSucceeded() {
-        Toast.makeText(this@AddEditContractActivity,"!!Contract Successfully Saved!!",LENGTH_SHORT).show()
+        Toast.makeText(this@AddEditContractActivity,"合同成功保存",LENGTH_SHORT).show()
         var contratEdit2ContractList:Intent = Intent(this@AddEditContractActivity, ContractListActivity::class.java)
         startActivity(contratEdit2ContractList)
     }
@@ -125,10 +136,10 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
     }
 
     override fun saveFailed() {
-        Toast.makeText(this@AddEditContractActivity,"!! Failed to Save the Contract!!", LENGTH_SHORT).show()
+        Toast.makeText(this@AddEditContractActivity,"失败，当前无法保存该合同", LENGTH_SHORT).show()
     }
     override fun updateFailed(title: String) {
-        Toast.makeText(this@AddEditContractActivity,"!! Failed to Update the Contract!!", LENGTH_SHORT).show()
+        Toast.makeText(this@AddEditContractActivity,"失败，当前无法更新该合同", LENGTH_SHORT).show()
     }
 
     fun showTextImage(source:String,editText: EditText){
@@ -141,10 +152,9 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
                 override fun done(queryObj:SignatureBmob, e: BmobException?) {
                     if (e == null) {
                         sig_bmob = queryObj
-                        Log.d("bmob", "失败仍失败")
                     }
                 else{
-                        Log.d("bmob", "失败：")
+                        Log.d("bmob", "失败：${e.message}")
                     }
                 }})
             val sig_bitmap = ImageOperation().stringToImage(sig_bmob?.signature_string)
@@ -154,5 +164,14 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
     }, null);
         editText.setText(spanned)
 }
+
+    override fun deleteSucceeded() {
+        Toast.makeText(this@AddEditContractActivity,"成功删除合同",Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this@AddEditContractActivity,ContractListActivity::class.java))
+    }
+
+    override fun  deleteFailed() {
+        Toast.makeText(this@AddEditContractActivity,"删除合同失败",Toast.LENGTH_SHORT).show()
+    }
 
 }

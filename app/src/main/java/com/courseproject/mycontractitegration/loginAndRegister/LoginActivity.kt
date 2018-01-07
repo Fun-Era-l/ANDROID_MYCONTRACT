@@ -36,7 +36,6 @@ public class LoginActivity : AppCompatActivity() {
         val password:EditText=findViewById<EditText>(R.id.edittext_password);
         button.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?){
-
                 BmobUser.loginByAccount( phone.text.toString(), password.text.toString(), object: LogInListener<BmobUser>()
                 {
                     override fun done(user:BmobUser?, e:BmobException?) {
@@ -47,7 +46,7 @@ public class LoginActivity : AppCompatActivity() {
                         }
                         else
                         {
-                            Toast.makeText(this@LoginActivity,"账号或密码错误",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this@LoginActivity,"请检查你的账号密码与网络连接状态",Toast.LENGTH_SHORT).show();
                         }
                     }
                 })

@@ -10,10 +10,13 @@ import android.view.MenuItem
 import android.widget.Toast
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.SaveListener
+import cn.bmob.v3.listener.UpdateListener
 import com.courseproject.mycontractitegration.R
 import com.courseproject.mycontractitegration.data.CustomOrder
 import com.courseproject.mycontractitegration.data.OrderBmob
+import com.courseproject.mycontractitegration.issueHandler.IssueActivity
 import kotlinx.android.synthetic.main.order_display_activity.*
+import org.litepal.crud.DataSupport
 
 class DisplayOrderActivity : AppCompatActivity() {
     var mCurrentOrder: CustomOrder? = null
@@ -67,6 +70,34 @@ class DisplayOrderActivity : AppCompatActivity() {
                        startActivity(Intent(this@DisplayOrderActivity,AddEditOrderActivity::class.java).putExtra("OrderToEdit",order))
 
                    }
+                    R.id.delete_order->{
+                        when(mCurrentOrder?.status){
+                            0->{
+                                DataSupport.delete(CustomOrder::class.java,mCurrentOrder?.id!!)
+                                startActivity(Intent(this@DisplayOrderActivity,OrderListActivity::class.java))
+                                Toast.makeText(this@DisplayOrderActivity,"成功删除订单",Toast.LENGTH_SHORT).show()
+                            }
+                            1->{
+                                DataSupport.delete(CustomOrder::class.java,mCurrentOrder?.id!!)
+                                val curOrder_Bmob =  OrderBmob()
+                                curOrder_Bmob.objectId = mCurrentOrder?.bmob_id
+                                curOrder_Bmob.delete(object :UpdateListener(){
+                                    override fun done(p0: BmobException?) {
+                                        if(p0 == null)
+                                        {
+                                            Toast.makeText(this@DisplayOrderActivity,"成功删除订单",Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                })
+                                startActivity(Intent(this@DisplayOrderActivity,OrderListActivity::class.java))
+                            }
+                            //取消正在执行的订单
+                            2,3->{
+                                Toast.makeText(this@DisplayOrderActivity,"无法直接取消该订单，自动跳转至订单申诉界面",Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this@DisplayOrderActivity,IssueActivity::class.java).putExtra("OrderToIssue",mCurrentOrder))
+                            }
+                        }
+                    }
                     else-> {
                     }
                 }

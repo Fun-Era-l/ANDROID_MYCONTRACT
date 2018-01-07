@@ -37,8 +37,7 @@ class AddEditOrderActivity : AppCompatActivity() {
                     Toast.makeText(this@AddEditOrderActivity, "暂存订单，可再次编辑", Toast.LENGTH_SHORT).show();
                     startActivity(Intent(this@AddEditOrderActivity,OrderListActivity::class.java))
                 }
-                else-> {
-                }
+                else-> return true
             }
             return true;
         }
