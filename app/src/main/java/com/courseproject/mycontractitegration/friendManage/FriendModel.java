@@ -24,7 +24,6 @@ public class FriendModel {
     }
     //保存联系人
     public boolean addFriend(String name,String company,String phone){
-        System.out.println(100000);
         if (findOneByName(name).size()==0){
             if (findOneByPhone(phone).size()==0){
                 Friend friend=new Friend();
@@ -35,7 +34,6 @@ public class FriendModel {
                 return true;
             }
         }
-        System.out.println(2000000);
         return false;
     }
 

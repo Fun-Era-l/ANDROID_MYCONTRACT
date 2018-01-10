@@ -28,8 +28,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--TODO 集成：1.5、配置IM SDK需要的广播和服务-->
-        <receiver android:name="cn.bmob.newim.core.ConnectChangeReceiver" >
+        <!-- TODO 集成：1.5、配置IM SDK需要的广播和服务 -->
+        <receiver android:name="cn.bmob.newim.core.ConnectChangeReceiver">
             <intent-filter>
                 <action android:name="cn.bmob.action.RECONNECT" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -37,6 +37,7 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
+
         <service
             android:name="cn.bmob.newim.core.service.BmobIMService"
             android:process=":bmobcore" />
@@ -68,9 +69,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".loginAndRegister.RegisterActivity" />
-        <activity android:name=".friendManage.FriendListActivity"></activity>
+        <activity android:name=".friendManage.FriendListActivity" />
         <activity android:name=".friendManage.AddFriendActivity" />
-        <activity android:name=".sendMessage.ChatActivity"></activity>
+        <activity android:name=".sendMessage.ChatActivity" />
+        <activity android:name=".friendManage.HomepageActivity" />
+        <activity android:name=".sendContract.ContractActivity"></activity>
     </application>
 
 </manifest>
