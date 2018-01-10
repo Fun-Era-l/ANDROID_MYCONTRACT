@@ -13,6 +13,7 @@ import com.courseproject.mycontractitegration.data.CustomOrder
 import com.courseproject.mycontractitegration.data.source.repository.OrderDataRepo
 import com.courseproject.mycontractitegration.showContractList.ContractListActivity
 import kotlinx.android.synthetic.main.order_list_act.*
+import org.litepal.crud.DataSupport
 
 class OrderListActivity : AppCompatActivity(),OrderListVP.View {
         lateinit private var mPresenter: OrderListVP.Presenter
@@ -20,15 +21,6 @@ class OrderListActivity : AppCompatActivity(),OrderListVP.View {
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.order_list_act)
-//            DataSupport.deleteAll(CustomOrder::class.java)
-//            val one: CustomOrder = CustomOrder("One","yi")
-//            val two = CustomOrder("two","er")
-//            val three = CustomOrder("three","er")
-//            val four = CustomOrder("four","er")
-//            one.save()
-//            two.save()
-//            three.save()
-//            four.save()
             /* 初始化mPresenter  使用LocalData代替DataRepo */
             mPresenter = OrderListPresenter(OrderDataRepo().getInstance(), this)
             mPresenter.loadOrderList()

@@ -104,6 +104,25 @@
             android:label="订单编辑"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".issueHandler.IssueActivity"></activity>
+        <activity
+            android:name="com.pingplusplus.android.PaymentActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
 
     </application>
 
