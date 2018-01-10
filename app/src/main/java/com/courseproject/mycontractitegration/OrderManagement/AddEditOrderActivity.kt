@@ -32,7 +32,7 @@ class AddEditOrderActivity : AppCompatActivity() {
         override fun onMenuItemClick(item: MenuItem):Boolean {
             when (item.getItemId()) {
                 R.id.store_order -> {
-                    val order = CustomOrder(order_display_name.text.toString(),order_display_content.text.toString())
+                    val order = CustomOrder(addedit_order_name.text.toString(),addedit_order_detail.text.toString())
                     order.save()
                     Toast.makeText(this@AddEditOrderActivity, "暂存订单，可再次编辑", Toast.LENGTH_SHORT).show();
                     startActivity(Intent(this@AddEditOrderActivity,OrderListActivity::class.java))
@@ -44,10 +44,14 @@ class AddEditOrderActivity : AppCompatActivity() {
     });
         confirm_order.setOnClickListener(object:View.OnClickListener {
             override fun onClick(p0: View?) {
+                /*
+                       同display order activity部分，调用ping++功能完成支付后将订单保存到服务器
+                 */
                 val order = CustomOrder(addedit_order_name.text.toString(),addedit_order_detail.text.toString())
                 val orderBmob = OrderBmob(order)
                 orderBmob.save(object : SaveListener<String>(){
                     override fun done(p0: String?, p1: BmobException?) {
+
                         order.bmob_id = p0!!
                         order.save()
                         Toast.makeText(this@AddEditOrderActivity, "成功提交订单，请等待系统分配律师", Toast.LENGTH_SHORT).show();

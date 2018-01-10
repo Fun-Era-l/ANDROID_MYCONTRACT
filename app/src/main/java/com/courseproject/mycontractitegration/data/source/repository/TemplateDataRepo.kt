@@ -13,12 +13,14 @@ import org.litepal.crud.DataSupport
 class TemplateDataRepo():TemplateDataSource{
 
     override fun getTemplates(callback: TemplateDataSource.loadTemplatesCallback) {
+        /*
+        获取本地和服务器上的模板列表
+        templateList; 模板列表
+        localTemplateList ： 本地模板列表
+
+         */
         var templateList = ArrayList<Template>()
         var localTemplateList = DataSupport.findAll(Template::class.java)
-//        if(localTemplateList == null) {
-//            callback.onTemplatesNotAvailable()
-//        }
-        //else {
             templateList.addAll(localTemplateList)
             var query = BmobQuery<TemplateBmob>()
             query.setLimit(100).findObjects(object:FindListener<TemplateBmob>()
