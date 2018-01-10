@@ -19,6 +19,8 @@
     <!-- 通知震动 -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
 
     <application
         android:name=".MyApplication"
@@ -92,7 +94,7 @@
         <activity android:name=".sendMessage.ChatActivity" />
         <activity android:name=".OrderManagement.OrderListActivity"
             android:label="代写服务订单"
-            ></activity>
+            />
         <activity
             android:name=".OrderManagement.DisplayOrderActivity"
             android:label="订单详情"
@@ -102,6 +104,7 @@
             android:label="订单编辑"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".issueHandler.IssueActivity"></activity>
+
     </application>
 
 </manifest>

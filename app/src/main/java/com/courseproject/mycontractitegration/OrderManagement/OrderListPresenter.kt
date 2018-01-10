@@ -21,11 +21,11 @@ class OrderListPresenter(orderDataSource: OrderDataSource,orderView: OrderListVP
 
 
 
-    override fun onOrdersLoaded(orders: List<CustomOrder>?) {
-        if (orders == null) {
+    override fun onOrdersLoaded(orderList: List<CustomOrder>?) {
+        if (orderList == null) {
             mOrderListView.showEmptyListWarning()
         } else {
-            mOrderListView.showOrderList(orders)
+            mOrderListView.showOrderList(orderList)
         }
     }
 

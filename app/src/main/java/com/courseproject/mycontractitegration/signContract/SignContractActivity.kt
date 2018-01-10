@@ -82,7 +82,6 @@ class SignContractActivity : AppCompatActivity(),SignContractVP.View {
                                     override fun done(p0: BmobException?) {
                                         if (p0 == null) {
                                             mPresenter.signContract(mContract?.title, mContract?.content)
-                                            Toast.makeText(this@SignContractActivity, "签名成功", Toast.LENGTH_LONG).show();
                                             val intent = Intent(this@SignContractActivity, ContractListActivity::class.java)
                                             startActivity(intent);
                                         } else {

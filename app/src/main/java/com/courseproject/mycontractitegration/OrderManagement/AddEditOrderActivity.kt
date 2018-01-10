@@ -48,6 +48,8 @@ class AddEditOrderActivity : AppCompatActivity() {
                 val orderBmob = OrderBmob(order)
                 orderBmob.save(object : SaveListener<String>(){
                     override fun done(p0: String?, p1: BmobException?) {
+                        
+
                         order.bmob_id = p0!!
                         order.save()
                         Toast.makeText(this@AddEditOrderActivity, "成功提交订单，请等待系统分配律师", Toast.LENGTH_SHORT).show();

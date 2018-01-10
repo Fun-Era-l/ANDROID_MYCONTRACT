@@ -115,7 +115,7 @@ class SignatureLocalDataSource():SignatureDataSource
     }
 
     override fun getDefaultSignature(callBack: SignatureDataSource.GetDefaultSigCallBack) {
-        val sigList = DataSupport.select().where("is_default=?","1").find(Signature::class.java)
+        val sigList:List<Signature>? = DataSupport.select().where("is_default=?","1").find(Signature::class.java)
         if(sigList == null || (sigList!= null &&sigList.isEmpty())){
             callBack.onFailToGetDefaultSig()
         }else{
