@@ -10,6 +10,7 @@ class User() : DataSupport(){
     var user_name : String = ""
     var register_time : Date = Date()
     var phone_number: String=""
+    var islawyer:Boolean = false
     init
     {
         var time_calendar: Calendar = Calendar.getInstance()
