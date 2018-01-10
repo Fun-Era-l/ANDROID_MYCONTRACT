@@ -10,14 +10,15 @@ class AddEditContractVP
         fun saveFailed()
         fun updateSucceeded(title:String)
         fun updateFailed(title:String)
-
+        fun deleteSucceeded()
+        fun deleteFailed()
 
     }
 
     interface Presenter : BasePresenter {
 
         fun saveContract(title: String, content:String)
-
+        fun deleteContract(id:Long)
       //  fun populate()
     }
 }

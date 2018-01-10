@@ -22,8 +22,8 @@ public class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //val bmobAppKey:String = this.getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.getString("Bmob_APP_KEY")
-        //Bmob.initialize(this,bmobAppKey);
+        val bmobAppKey:String = this.getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.getString("Bmob_APP_KEY")
+        Bmob.initialize(this,bmobAppKey);
         //BmobIM.init(this);
         //BmobIM.registerDefaultMessageHandler(ImMessageHandler());
         var button:Button = findViewById<Button>(R.id.button_login);
@@ -32,22 +32,17 @@ public class LoginActivity : AppCompatActivity() {
         val password:EditText=findViewById<EditText>(R.id.edittext_password);
         button.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?){
-                Log.d("fuck","${phone.text.toString()}")
-                Log.d("fuck","${password.text.toString()}")
-
                 BmobUser.loginByAccount( phone.text.toString(), password.text.toString(), object: LogInListener<BmobUser>()
                 {
                     override fun done(user:BmobUser?, e:BmobException?) {
                         val userTemp:BmobUser? = user
-                        Log.d("fuck","${userTemp?.mobilePhoneNumber}")
                         if (userTemp != null){
-                            var intent =Intent(this@LoginActivity, FriendListActivity::class.java)
-                            Log.d("fuck","test")
+                            var intent =Intent(this@LoginActivity, ContractListActivity::class.java)
                             startActivity(intent)
                         }
                         else
                         {
-                            Toast.makeText(this@LoginActivity,"账号或密码错误",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this@LoginActivity,"请检查你的账号密码与网络连接状态",Toast.LENGTH_SHORT).show();
                         }
                     }
                 })

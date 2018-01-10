@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.courseproject.mycontractitegration.showSignatureList.SelectedSignatureActivity">
+<ImageView
+    android:id="@+id/selected_signature"
+    android:layout_width="wrap_content"
+    android:layout_height="260dp" />
+    <Button
+        android:id="@+id/delete_signature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除签名"
+        app:layout_constraintTop_toBottomOf="@id/selected_signature"
+        />
+    <Button
+        android:id="@+id/set_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设为默认签名"
+        app:layout_constraintTop_toBottomOf="@+id/selected_signature"
+        app:layout_constraintLeft_toRightOf="@+id/delete_signature"
+        />
+</android.support.constraint.ConstraintLayout>

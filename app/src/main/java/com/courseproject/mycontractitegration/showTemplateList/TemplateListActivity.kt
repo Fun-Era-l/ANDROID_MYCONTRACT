@@ -9,57 +9,37 @@ import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.Toast
 import com.courseproject.mycontractitegration.R
-import com.courseproject.mycontractitegration.data.Contract
 import com.courseproject.mycontractitegration.data.Template
-import com.courseproject.mycontractitegration.data.source.local.TemplateLocalDataSource
-import org.litepal.crud.DataSupport
+import com.courseproject.mycontractitegration.data.source.repository.TemplateDataRepo
+import com.courseproject.mycontractitegration.showContractList.ContractListActivity
 
 
 class TemplateListActivity : AppCompatActivity(),TemplateListVP.View {
     //private var templateList: List<Template> = ArrayList<Template> ()
     lateinit private var mPresenter: TemplateListVP.Presenter
-
-   /* fun initList()
-    {
-        DataSupport.deleteAll(Template::class.java)
-        val one =Template("LabourContract")
-        val two =Template("StockContract")
-        val three =Template("SoftwareTradeContract")
-        val four =Template("IndustryTradeContract")
-        /* initialize the Contract Table*/
-        val contract_default: Contract = Contract("default_title","default_content")
-        one.save()
-        two.save()
-        three.save()
-        four.save()
-        contract_default.save()
-    }*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.template_list_act)
-        /* 初始化mPresenter  使用LocalData代替DataRepo */
-        mPresenter = TemplateListPresenter(TemplateLocalDataSource().getInstance(),this)
+        /* 初始化mPresenter   */
+        mPresenter = TemplateListPresenter(TemplateDataRepo().getInstance(), this)
         mPresenter.loadTemplateList()
-        val tempListView:ListView = findViewById<ListView>(R.id.template_list)
-        tempListView.setOnItemClickListener(object: AdapterView.OnItemClickListener
-        {
+        val tempListView: ListView = findViewById<ListView>(R.id.template_list)
+        tempListView.setOnItemClickListener(object : AdapterView.OnItemClickListener {
 
             override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(id.toInt() == -1) {
+                if (id.toInt() == -1) {
                     Log.d("id-positionError", "ClickOnHeader")
                 }
-                val realPosition:Int = id.toInt()
-                val item : Template? = parent?.getItemAtPosition(realPosition) as? Template
-                var templateList2display:Intent = Intent(this@TemplateListActivity, DisplaySelectedTemplateActivity::class.java)
-                templateList2display.putExtra("SelectedItem",item)
+                val realPosition: Int = id.toInt()
+                val item: Template? = parent?.getItemAtPosition(realPosition) as? Template
+                var templateList2display: Intent = Intent(this@TemplateListActivity, DisplaySelectedTemplateActivity::class.java)
+                templateList2display.putExtra("SelectedItem", item)
                 startActivity(templateList2display)
 
             }
         })
 
     }
-
-
 
     override fun setPresenter(presenter: TemplateListVP.Presenter) {
         mPresenter = presenter;
@@ -73,7 +53,16 @@ class TemplateListActivity : AppCompatActivity(),TemplateListVP.View {
     }
 
     override fun showEmptyListWarning() {
-        Toast.makeText(this,"You Got No Templates !",Toast.LENGTH_LONG).show()
+        Toast.makeText(this,"无模板数据，请检查你的网络连接是否正常!!",Toast.LENGTH_LONG).show()
+        this@TemplateListActivity.finish()
+    }
+    /*
+重写在模板列表活动下的系统返回键，直接返回到主界面
+ */
+    override fun onBackPressed() {
+        val templist2Entrance:Intent = Intent(this@TemplateListActivity, ContractListActivity::class.java)
+        startActivity(templist2Entrance)
+        super.onBackPressed()
     }
 
 }

@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.courseproject.mycontractitegration.OrderManagement.DisplayOrderActivity">
+    <item
+        android:id="@+id/submit_order"
+        android:title="提交订单"
+
+         />
+    <item
+        android:id="@+id/delete_order"
+        android:title="取消订单"
+        />
+    <item
+        android:id="@+id/edit_order"
+        android:title="编辑订单"
+        />
+</menu>

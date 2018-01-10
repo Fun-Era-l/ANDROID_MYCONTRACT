@@ -3,7 +3,8 @@ package com.courseproject.mycontractitegration.addeditcontract
 import com.courseproject.mycontractitegration.data.source.ContractDataSource
 
 
-class AddEditContractPresenter(contractDataSource: ContractDataSource,view:AddEditContractVP.View): AddEditContractVP.Presenter, ContractDataSource.SaveContractCallback
+class AddEditContractPresenter(contractDataSource: ContractDataSource,view:AddEditContractVP.View): AddEditContractVP.Presenter,
+        ContractDataSource.SaveContractCallback,ContractDataSource.DeleteContractCallBack
 {
     var mContractDataSource: ContractDataSource = contractDataSource
     var mView : AddEditContractVP.View = view
@@ -15,13 +16,8 @@ class AddEditContractPresenter(contractDataSource: ContractDataSource,view:AddEd
     }
 
 
-    override fun onContractSaved(isSucceeded:Boolean) {
-       if(isSucceeded) {
+    override fun onContractSaved() {
            mView.saveSucceeded()
-       }
-       else {
-           mView.saveFailed()
-       }
     }
 
     override fun onContractUpdated(updatedContractTitle:String) {
@@ -33,5 +29,17 @@ class AddEditContractPresenter(contractDataSource: ContractDataSource,view:AddEd
     }
     override fun onContractFailToSave() {
         mView.saveFailed()
+    }
+
+    override fun deleteContract(id: Long) {
+        mContractDataSource.deleteContract(id,this)
+    }
+
+    override fun onDeleteContract(isDeleted: Boolean) {
+        if(isDeleted){
+            mView.deleteSucceeded()
+        }else{
+            mView.deleteFailed()
+        }
     }
 }

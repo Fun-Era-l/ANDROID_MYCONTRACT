@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/finish_edit"
+        android:title="完成"
+        />
+
+    <item
+        android:id="@+id/sign_contract"
+        android:title="签名"/>
+    <item
+        android:id="@+id/delete_contract"
+        android:title="删除"/>
+</menu>

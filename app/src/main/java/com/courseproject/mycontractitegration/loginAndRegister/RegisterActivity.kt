@@ -35,7 +35,7 @@ public class RegisterActivity: AppCompatActivity() {
                             Toast.makeText(this@RegisterActivity,"验证码已成功发送",Toast.LENGTH_SHORT).show();
 
                         }else {
-                            Toast.makeText(this@RegisterActivity,"error:"+e?.message,Toast.LENGTH_LONG).show();
+                            Toast.makeText(this@RegisterActivity,"error:"+e.message,Toast.LENGTH_LONG).show();
                         }
                     }
                 });
