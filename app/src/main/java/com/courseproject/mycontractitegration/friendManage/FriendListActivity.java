@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.courseproject.mycontractitegration.R;
 import com.courseproject.mycontractitegration.data.Friend;
 import com.courseproject.mycontractitegration.sendMessage.ChatActivity;
+import com.courseproject.mycontractitegration.showContractList.ContractListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +49,8 @@ public class FriendListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //进入聊天界面,需更改
-                Intent intent=new Intent(FriendListActivity.this,AddFriendActivity.class);
+                //进入主页
+                Intent intent=new Intent(FriendListActivity.this,HomepageActivity.class);
                 intent.putExtra("name",data[position]);
                 startActivity(intent);
             }

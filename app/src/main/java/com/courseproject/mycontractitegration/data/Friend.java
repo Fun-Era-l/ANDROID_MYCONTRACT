@@ -2,6 +2,8 @@ package com.courseproject.mycontractitegration.data;
 
 import org.litepal.crud.DataSupport;
 
+import cn.bmob.newim.bean.BmobIMUserInfo;
+
 /**
  * Created by 27827 on 2017/12/31.
  */

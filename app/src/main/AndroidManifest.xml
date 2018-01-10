@@ -78,6 +78,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".loginAndRegister.RegisterActivity" />
+
+        <activity android:name=".friendManage.FriendListActivity" />
+        <activity android:name=".friendManage.AddFriendActivity" />
+        <activity android:name=".sendMessage.ChatActivity" />
+        <activity android:name=".friendManage.HomepageActivity" />
+        <activity android:name=".sendContract.ContractActivity"></activity>
+
         <activity android:name=".addSignature.AddSignatureActivity"
             android:label="手写签名"
             />
