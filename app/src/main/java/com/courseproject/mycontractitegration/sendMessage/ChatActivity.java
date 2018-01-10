@@ -61,7 +61,6 @@ public class ChatActivity extends AppCompatActivity{
         String phone= FriendModel.getInstance().nameToPhone(name);
         final EditText content=findViewById(R.id.edt_msg);
         final Button button=findViewById(R.id.btn_send);
-        final Button contract=findViewById(R.id.btn_contract);
         adapter = new MsgAdapter(ChatActivity.this, R.layout.msg_item, msgList);
         msgListView = (ListView)findViewById(R.id.lv_chat);
         msgListView.setAdapter(adapter);
@@ -121,18 +120,6 @@ public class ChatActivity extends AppCompatActivity{
                                             }
                                         });
 
-
-                                        //合同按钮
-                                        contract.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Intent intent1=new Intent(ChatActivity.this, ContractActivity.class);
-                                                Bundle bundle=new Bundle();
-                                                bundle.putSerializable("conversation",mBmobIMConversation);
-                                                intent.putExtras(bundle);
-                                                startActivity(intent1);
-                                            }
-                                        });
                                     } else {
                                         Toast.makeText(ChatActivity.this, "出错", Toast.LENGTH_SHORT).show();
                                     }

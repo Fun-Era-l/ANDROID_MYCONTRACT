@@ -1,6 +1,8 @@
 package com.courseproject.mycontractitegration.sendMessage;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -8,6 +10,8 @@ import android.widget.Toast;
 
 import com.courseproject.mycontractitegration.data.Msg;
 import com.courseproject.mycontractitegration.friendManage.FriendModel;
+import com.courseproject.mycontractitegration.friendManage.HomepageActivity;
+import com.courseproject.mycontractitegration.sendContract.ContractActivity;
 
 import java.util.List;
 
@@ -55,13 +59,6 @@ public class ChatPresenter {
                 }
             }
         });
-    }
-
-    //开启会话
-    public BmobIMConversation startConversation(BmobIMUserInfo info){
-        BmobIMConversation conversationEntrance=BmobIM.getInstance().startPrivateConversation(info,null);
-        BmobIMConversation messageManager=BmobIMConversation.obtain(BmobIMClient.getInstance(),conversationEntrance);
-        return messageManager;
     }
 
     public void sendMessage(final String content, BmobIMConversation mConversationManager){

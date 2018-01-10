@@ -26,7 +26,7 @@ public class ChatModel {
         return info;
     }
 
-    public Msg getMsg(String content,int type){
+    public Msg getMsg(String content,String type){
         Msg msg=new Msg();
         msg.setType(type);
         msg.setContent(content);

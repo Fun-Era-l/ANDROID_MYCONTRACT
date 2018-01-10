@@ -11,9 +11,11 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.courseproject.mycontractitegration.data.Contract;
 import com.courseproject.mycontractitegration.data.Msg;
 import com.courseproject.mycontractitegration.friendManage.FriendListActivity;
 import com.courseproject.mycontractitegration.friendManage.HomepageActivity;
+import com.courseproject.mycontractitegration.sendContract.ContractMessage;
 import com.courseproject.mycontractitegration.sendMessage.ChatActivity;
 import com.courseproject.mycontractitegration.sendMessage.MsgAdapter;
 
@@ -21,6 +23,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.lang.ref.PhantomReference;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,9 +43,22 @@ public class ImMessageHandler extends BmobIMMessageHandler{
     public ImMessageHandler(Context context){this.context=context;}
     @Override
     public void onMessageReceive(final MessageEvent messageEvent) {
-        super.onMessageReceive(messageEvent);
-        EventBus.getDefault().post(messageEvent);
+        if (messageEvent.getMessage().getMsgType().equals("contract")){
+            Toast.makeText(context,"你收到来自"+messageEvent.getConversation().getConversationId()+"用户的一份合同",Toast.LENGTH_LONG).show();
+            String message=messageEvent.getMessage().getContent().toString();
+            Log.i("get",message);
+            int i=getI(message);
+            String title=message.substring(0,i);
+            String content=message.substring(i+1,message.length());
+            Log.i("title",title);
+            Log.i("content",content);
+            Contract contract=new Contract();
+            contract.setTitle(title);
+            contract.setContent(content);
 
+        }else {
+            EventBus.getDefault().post(messageEvent);
+        }
     }
 
     @Override
@@ -56,10 +72,10 @@ public class ImMessageHandler extends BmobIMMessageHandler{
             List<MessageEvent> list = entry.getValue();
             int size = list.size();
             Log.i("TAG","用户" + entry.getKey() + "发来" + size + "条消息");
-            for (int i = 0; i < size; i++) {
+            /*for (int i = 0; i < size; i++) {
                 //处理每条消息
                 executeMessage(list.get(i));
-            }
+            }*/
         }
     }
 
@@ -83,4 +99,15 @@ public class ImMessageHandler extends BmobIMMessageHandler{
             executeMessage(event);
         }
     }
+
+    private int getI(String message){
+        for (int i=0;i<message.length();i++){
+            if (message.charAt(i)=='+'){
+                return i;
+            }
+        }
+        return 0;
+    }
+
+
 }

@@ -11,14 +11,26 @@ import android.widget.Toast;
 
 import com.courseproject.mycontractitegration.R;
 import com.courseproject.mycontractitegration.data.Friend;
+import com.courseproject.mycontractitegration.data.Msg;
+import com.courseproject.mycontractitegration.sendContract.ContractActivity;
 import com.courseproject.mycontractitegration.sendMessage.ChatActivity;
 
+import java.util.List;
+
 import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.bean.BmobIMConversation;
+import cn.bmob.newim.bean.BmobIMMessage;
+import cn.bmob.newim.bean.BmobIMUserInfo;
+import cn.bmob.newim.core.BmobIMClient;
 import cn.bmob.newim.core.ConnectionStatus;
 import cn.bmob.newim.listener.ConnectListener;
 import cn.bmob.newim.listener.ConnectStatusChangeListener;
+import cn.bmob.newim.listener.ConversationListener;
+import cn.bmob.newim.listener.MessageSendListener;
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 public class HomepageActivity extends AppCompatActivity {
 
@@ -27,9 +39,10 @@ public class HomepageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
-        Intent intent=getIntent();
+        final Intent intent=getIntent();
         final String name=intent.getStringExtra("name");
         Friend tFriend=FriendModel.getInstance().findOneByName(name).get(0);
+        final String phone= tFriend.getPhone();
         initView(tFriend);
         BmobUser user=BmobUser.getCurrentUser();
         BmobIM.connect(user.getMobilePhoneNumber(), new ConnectListener() {
@@ -60,6 +73,15 @@ public class HomepageActivity extends AppCompatActivity {
                 Intent intent1=new Intent(HomepageActivity.this, ChatActivity.class);
                 intent1.putExtra("friendName",name);
                 startActivity(intent1);
+            }
+        });
+        Button button1=findViewById(R.id.btn_sendContract);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2=new Intent(HomepageActivity.this,ContractActivity.class);
+                intent2.putExtra("fName",name);
+                startActivity(intent2);
             }
         });
     }

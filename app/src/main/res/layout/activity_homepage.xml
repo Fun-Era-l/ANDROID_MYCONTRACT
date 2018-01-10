@@ -31,6 +31,13 @@
             android:text="发信息"
             android:textSize="24sp"
             android:gravity="center"/>
+        <Button
+            android:id="@+id/btn_sendContract"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="发合同"
+            android:textSize="24sp"
+            android:gravity="center"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
