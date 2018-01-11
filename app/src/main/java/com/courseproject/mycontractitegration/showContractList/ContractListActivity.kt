@@ -10,12 +10,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import com.courseproject.mycontractitegration.R
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
+import android.widget.Toast
+import cn.bmob.newim.BmobIM
+import cn.bmob.newim.core.ConnectionStatus
+import cn.bmob.newim.listener.ConnectListener
+import cn.bmob.newim.listener.ConnectStatusChangeListener
 import cn.bmob.v3.BmobUser
-import com.courseproject.mycontractitegration.OrderManagement.OrderListActivity
-import com.courseproject.mycontractitegration.R
+import cn.bmob.v3.exception.BmobException
+import com.courseproject.mycontractitegration.orderManagement.OrderListActivity
 import com.courseproject.mycontractitegration.addeditcontract.AddEditContractActivity
 import com.courseproject.mycontractitegration.showTemplateList.TemplateListActivity
 import com.courseproject.mycontractitegration.data.Contract
@@ -44,6 +50,28 @@ class ContractListActivity : AppCompatActivity(),ContractListVP.View, Navigation
 
         mPresenter = ContractListPresenter(ContractLocalDataSource().getInstance(),this)
         mPresenter.loadContractList()
+/*
+进入contractlist首页后，开启bmobIm 连接，随时等待接收消息与合同
+ */
+        val user = BmobUser.getCurrentUser()
+        BmobIM.connect(user.mobilePhoneNumber, object : ConnectListener() {
+            override fun done(s: String, e: BmobException?) {
+                if (e == null) {
+                    Log.i("TAG", "服务器连接成功")
+                } else {
+                    Log.i("TAG", "服务器连接失败")
+                    Toast.makeText(this@ContractListActivity, "无网络 将无法发送消息", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+        //监听连接状态
+        BmobIM.getInstance().setOnConnectStatusChangeListener(object : ConnectStatusChangeListener() {
+            override fun onChange(connectionStatus: ConnectionStatus) {
+                Toast.makeText(this@ContractListActivity, connectionStatus.msg, Toast.LENGTH_SHORT).show()
+                Log.i("连接状态：", BmobIM.getInstance().currentStatus.msg)
+            }
+        })
 
         contract_list.setOnItemClickListener(object: AdapterView.OnItemClickListener
         {
@@ -53,14 +81,14 @@ class ContractListActivity : AppCompatActivity(),ContractListVP.View, Navigation
                 }
                 val realPosition:Int = id.toInt()
                 val item : Contract? = parent?.getItemAtPosition(realPosition) as? Contract
-                var contractList2addEdit:Intent = Intent(this@ContractListActivity, AddEditContractActivity::class.java)
+                val contractList2addEdit:Intent = Intent(this@ContractListActivity, AddEditContractActivity::class.java)
                 contractList2addEdit.putExtra("ContractToEdit",item)
                 startActivity(contractList2addEdit)
             }
         })
         add.setOnClickListener(object:View.OnClickListener{
             override fun onClick(p0: View?) {
-                var contractList2TemplateSelect: Intent = Intent(this@ContractListActivity, TemplateListActivity::class.java)
+                val contractList2TemplateSelect: Intent = Intent(this@ContractListActivity, TemplateListActivity::class.java)
                 startActivity(contractList2TemplateSelect)
             }
         })
@@ -75,7 +103,6 @@ class ContractListActivity : AppCompatActivity(),ContractListVP.View, Navigation
 
     override fun showContractList(tempList: List<Contract>) {
         val mContractAdapter = ContractAdapter(this,R.layout.contract_item,tempList)
-        //val mContractListView : ListView = findViewById(R.id.contract_list)
         contract_list.adapter = mContractAdapter;
 
     }
@@ -85,7 +112,9 @@ class ContractListActivity : AppCompatActivity(),ContractListVP.View, Navigation
         mPresenter = presenter
     }
 
-
+/*
+重写返回键功能
+ */
     override fun onBackPressed() {
         if ( contract_list_drawer_layout.isDrawerOpen(GravityCompat.START)) {
              contract_list_drawer_layout.closeDrawer(GravityCompat.START)
@@ -105,7 +134,9 @@ class ContractListActivity : AppCompatActivity(),ContractListVP.View, Navigation
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
+/*
+重载drawer菜单项目监听
+ */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
                 R.id.nav_signature -> {
@@ -125,16 +156,6 @@ class ContractListActivity : AppCompatActivity(),ContractListVP.View, Navigation
                     val nav2SignatureList:Intent = Intent(this@ContractListActivity,OrderListActivity::class.java)
                     startActivity(nav2SignatureList)
                 }
-                R.id.nav_share -> {
-
-                }
-                R.id.nav_send -> {
-
-                }
-                R.id.nav_lawyer_option->{
-
-                }
-                R.id.nav_to_be_lawyer->{}
             else->{}
 
             }

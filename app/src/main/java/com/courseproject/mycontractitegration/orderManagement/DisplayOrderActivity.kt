@@ -1,9 +1,6 @@
-package com.courseproject.mycontractitegration.OrderManagement
+package com.courseproject.mycontractitegration.orderManagement
 
-import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -17,20 +14,9 @@ import cn.bmob.v3.listener.UpdateListener
 import com.courseproject.mycontractitegration.R
 import com.courseproject.mycontractitegration.data.CustomOrder
 import com.courseproject.mycontractitegration.data.OrderBmob
-import com.courseproject.mycontractitegration.data.PaymentRequest
 import com.courseproject.mycontractitegration.issueHandler.IssueActivity
-import com.pingplusplus.android.Pingpp
 import kotlinx.android.synthetic.main.order_display_activity.*
-import org.json.JSONObject
 import org.litepal.crud.DataSupport
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
-import java.math.BigDecimal
-import java.net.HttpURLConnection
-import java.net.URL
-import java.text.NumberFormat
-import java.util.*
 
 class DisplayOrderActivity : AppCompatActivity() {
     private val MY_URL = "http://128.199.183.116"

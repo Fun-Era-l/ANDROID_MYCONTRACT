@@ -6,12 +6,9 @@ import com.courseproject.mycontractitegration.data.Contract
 
 class ContractListPresenter(templateDataSource: ContractDataSource, templateView: ContractListVP.View):
         ContractListVP.Presenter, ContractDataSource.loadContractsCallback {
-    //暂时采用LocalDataSource代替Repository
     private var mLocalDataSource: ContractDataSource = templateDataSource
 
     private var mContractListView: ContractListVP.View = templateView
-
-    //var templateName: String = "DefaultContract"
 
     override fun start() {
         loadContractList()

@@ -9,6 +9,9 @@ import java.lang.reflect.Method
 
 class EditTextInputControl()
 {
+    /*
+    限制edittext输入功能，不显示光标
+     */
     fun EditControl(value:Boolean, editText:EditText) {
         if (value) {
             editText.setFocusable(true);
@@ -32,6 +35,9 @@ class EditTextInputControl()
         }
     }
 
+    /*
+    限制软件盘弹出，但仍显示光标位置，用于“在此处签名”功能
+     */
     fun disableShowSoftInput(editText: EditText) {
         if (android.os.Build.VERSION.SDK_INT <= 10) {
             editText.setInputType(InputType.TYPE_NULL)

@@ -3,11 +3,8 @@ package com.courseproject.mycontractitegration.showTemplateList
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.app.ActionBar
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import com.courseproject.mycontractitegration.R
 import com.courseproject.mycontractitegration.addeditcontract.AddEditContractActivity
 import com.courseproject.mycontractitegration.data.Template
@@ -27,10 +24,10 @@ class DisplaySelectedTemplateActivity : AppCompatActivity() {
         {
             actBar.hide()
         }
-
-        mTemplateName = findViewById(R.id.display_template_name)
-        mTemplateContent = findViewById(R.id.display_template_content)
         **/
+        /*
+        获得传入的模板数据
+         */
         templateItem = intent.getSerializableExtra("SelectedItem") as? Template
         if(templateItem is Template) {
             Log.d("Displate-name", "$templateItem.template_name")
@@ -38,9 +35,10 @@ class DisplaySelectedTemplateActivity : AppCompatActivity() {
         }
         display_template_name.setText(templateItem?.template_name)
         display_template_content.setText(templateItem?.template_content)
-
-        var buttonSelect = findViewById<Button>(R.id.finish_edit_button)
-        buttonSelect.setOnClickListener(object: View.OnClickListener{
+        /*
+        确认使用该模板
+         */
+        use_template.setOnClickListener(object: View.OnClickListener{
 
             override fun onClick(p0: View?) {
                 var DisTemplate2AddEditContract: Intent = Intent(this@DisplaySelectedTemplateActivity, AddEditContractActivity::class.java)

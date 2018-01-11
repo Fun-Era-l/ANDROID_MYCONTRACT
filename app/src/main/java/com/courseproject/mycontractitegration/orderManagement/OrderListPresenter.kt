@@ -1,4 +1,4 @@
-package com.courseproject.mycontractitegration.OrderManagement
+package com.courseproject.mycontractitegration.orderManagement
 
 import com.courseproject.mycontractitegration.data.CustomOrder
 import com.courseproject.mycontractitegration.data.source.OrderDataSource

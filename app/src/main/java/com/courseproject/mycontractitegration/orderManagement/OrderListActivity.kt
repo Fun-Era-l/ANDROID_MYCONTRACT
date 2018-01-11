@@ -1,4 +1,4 @@
-package com.courseproject.mycontractitegration.OrderManagement
+package com.courseproject.mycontractitegration.orderManagement
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -13,7 +13,6 @@ import com.courseproject.mycontractitegration.data.CustomOrder
 import com.courseproject.mycontractitegration.data.source.repository.OrderDataRepo
 import com.courseproject.mycontractitegration.showContractList.ContractListActivity
 import kotlinx.android.synthetic.main.order_list_act.*
-import org.litepal.crud.DataSupport
 
 class OrderListActivity : AppCompatActivity(),OrderListVP.View {
         lateinit private var mPresenter: OrderListVP.Presenter
@@ -25,7 +24,9 @@ class OrderListActivity : AppCompatActivity(),OrderListVP.View {
             mPresenter = OrderListPresenter(OrderDataRepo().getInstance(), this)
             mPresenter.loadOrderList()
 
-            //orderListView = findViewById(R.id.order_list)
+            /*
+            注册item监听, 点击后进入order详情界面
+             */
             order_list.setOnItemClickListener(object: AdapterView.OnItemClickListener {
 
                 override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -39,6 +40,9 @@ class OrderListActivity : AppCompatActivity(),OrderListVP.View {
                     startActivity(orderList2display)
                 }
             })
+            /*
+            新建订单按键,点击后进入订单编辑添加部分
+             */
 
             add_order.setOnClickListener(object: View.OnClickListener{
                 override fun onClick(p0: View?) {

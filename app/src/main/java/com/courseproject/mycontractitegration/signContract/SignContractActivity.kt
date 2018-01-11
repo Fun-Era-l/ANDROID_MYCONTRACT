@@ -11,7 +11,6 @@ import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ImageSpan
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -19,14 +18,12 @@ import cn.bmob.v3.BmobSMS
 import cn.bmob.v3.BmobUser
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.QueryListener
-import cn.bmob.v3.listener.SaveListener
 import cn.bmob.v3.listener.UpdateListener
 import com.courseproject.mycontractitegration.R
 import com.courseproject.mycontractitegration.data.Contract
 import com.courseproject.mycontractitegration.data.Signature
 import com.courseproject.mycontractitegration.data.source.repository.ContractLocalDataSource
 import com.courseproject.mycontractitegration.data.source.repository.SignatureLocalDataSource
-import com.courseproject.mycontractitegration.loginAndRegister.LoginActivity
 import com.courseproject.mycontractitegration.showContractList.ContractListActivity
 import com.courseproject.mycontractitegration.showSignatureList.SignatureListActivity
 import kotlinx.android.synthetic.main.sign_contract_act.*
@@ -58,9 +55,15 @@ class SignContractActivity : AppCompatActivity(),SignContractVP.View {
         sign_contract_title.setText(mContract?.title)
         sign_contract_content.setText(mContract?.content)
         EditTextInputControl().disableShowSoftInput(sign_contract_content)
-        finish_edit_button.setText("确认签名")
-        finish_edit_button.visibility = View.INVISIBLE
-        finish_edit_button.setOnClickListener(object:View.OnClickListener {
+        /*
+        在完成光标处签名之前，不允许确认提交签名
+         */
+        use_template.setText("确认签名")
+        use_template.visibility = View.INVISIBLE
+        /*
+        点击确认签名后，发送验证码并弹出AlertDialog提示用户输入验证码进行校验
+         */
+        use_template.setOnClickListener(object:View.OnClickListener {
             override fun onClick(p0: View?) {
                 BmobSMS.requestSMSCode(mCurUser.mobilePhoneNumber.toString(), "message", object : QueryListener<Int>() {
                     override fun done(integer: Int?, e: BmobException?) {
@@ -93,8 +96,7 @@ class SignContractActivity : AppCompatActivity(),SignContractVP.View {
                         }).setNegativeButton("取消", null).show()
             } })
         /*
-        在光标处签名
-
+        在光标处签名，确定后在字符串该处添加<img src='${mDefaultSignature?.bmob_id}'/> 进行标识
          */
         sign_here_button.setOnClickListener(object :View.OnClickListener {
             override fun onClick(p0: View?) {
@@ -113,7 +115,7 @@ class SignContractActivity : AppCompatActivity(),SignContractVP.View {
                 mEditable.insert(cursor_position, mSpannableString);
                 mContract?.title = sign_contract_title.text.toString()
                 mContract?.content = sign_contract_content.text.toString()
-                finish_edit_button.visibility = View.VISIBLE
+                use_template.visibility = View.VISIBLE
             }
         })
         back.setOnClickListener(object :View.OnClickListener{

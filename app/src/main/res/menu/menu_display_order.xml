@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.courseproject.mycontractitegration.OrderManagement.DisplayOrderActivity">
+    tools:context="com.courseproject.mycontractitegration.orderManagement.DisplayOrderActivity">
     <item
         android:id="@+id/submit_order"
         android:title="提交订单"

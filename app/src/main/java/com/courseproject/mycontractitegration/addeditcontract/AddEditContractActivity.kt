@@ -42,7 +42,6 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
     var mTemplate:Template? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.edit_contract_act)
 
         //取出使用的模板或者待编辑的合同内容  并在Content区域显示
@@ -94,14 +93,23 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
         return true
     }
 
+    /*
+    菜单item监听
+     */
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId)
         {
+            /*
+            完成编辑，保存合同
+             */
             R.id.finish_edit-> {
                 val inputContent: String = contentEditText.text.toString()
                 val inputTitle: String = titleEditText.text.toString()
                 mPresenter.saveContract(inputTitle, inputContent)
             }
+            /*
+            对合同进行签名
+             */
             R.id.sign_contract->{
                 val inputContent: String = contentEditText.text.toString()
                 val inputTitle: String = titleEditText.text.toString()
@@ -110,6 +118,9 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
                 edit2Sign.putExtra("ContractToSign",contractToSign)
                 startActivity(edit2Sign)
             }
+            /*
+            删除合同
+             */
             R.id.delete_contract->{
                 mPresenter.deleteContract(mContract?.id!!)
             }
@@ -141,29 +152,6 @@ class AddEditContractActivity : AppCompatActivity(),AddEditContractVP.View
     override fun updateFailed(title: String) {
         Toast.makeText(this@AddEditContractActivity,"失败，当前无法更新该合同", LENGTH_SHORT).show()
     }
-
-    fun showTextImage(source:String,editText: EditText){
-
-        var spanned: Spanned = Html.fromHtml(source, FROM_HTML_MODE_COMPACT,object: Html.ImageGetter {
-        override fun getDrawable(source:String): Drawable {
-            var sig_bmob:SignatureBmob? = null
-            val query = BmobQuery<SignatureBmob>()
-            query.getObject(source, object : QueryListener<SignatureBmob>() {
-                override fun done(queryObj:SignatureBmob, e: BmobException?) {
-                    if (e == null) {
-                        sig_bmob = queryObj
-                    }
-                else{
-                        Log.d("bmob", "失败：${e.message}")
-                    }
-                }})
-            val sig_bitmap = ImageOperation().stringToImage(sig_bmob?.signature_string)
-            val drawable:Drawable = BitmapDrawable(resources,sig_bitmap)
-            return drawable
-        }
-    }, null);
-        editText.setText(spanned)
-}
 
     override fun deleteSucceeded() {
         Toast.makeText(this@AddEditContractActivity,"成功删除合同",Toast.LENGTH_SHORT).show()

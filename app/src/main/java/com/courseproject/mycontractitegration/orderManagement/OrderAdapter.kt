@@ -1,4 +1,4 @@
-package com.courseproject.mycontractitegration.OrderManagement
+package com.courseproject.mycontractitegration.orderManagement
 
 import android.content.Context
 import android.view.LayoutInflater

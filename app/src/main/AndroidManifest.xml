@@ -99,15 +99,15 @@
         <activity android:name=".friendManage.FriendListActivity" />
         <activity android:name=".friendManage.AddFriendActivity" />
         <activity android:name=".sendMessage.ChatActivity" />
-        <activity android:name=".OrderManagement.OrderListActivity"
+        <activity android:name=".orderManagement.OrderListActivity"
             android:label="代写服务订单"
             />
         <activity
-            android:name=".OrderManagement.DisplayOrderActivity"
+            android:name=".orderManagement.DisplayOrderActivity"
             android:label="订单详情"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".OrderManagement.AddEditOrderActivity"
+            android:name=".orderManagement.AddEditOrderActivity"
             android:label="订单编辑"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".issueHandler.IssueActivity"></activity>

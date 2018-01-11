@@ -14,6 +14,9 @@ class ContractListVP
 
 
     interface Presenter : BasePresenter {
+        /*
+        载入合同列表
+         */
         fun loadContractList()
 
     }

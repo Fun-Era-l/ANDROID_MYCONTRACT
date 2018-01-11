@@ -3,7 +3,6 @@ package com.courseproject.mycontractitegration.sendContract;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,21 +10,15 @@ import android.widget.Toast;
 
 import com.courseproject.mycontractitegration.R;
 import com.courseproject.mycontractitegration.data.Contract;
-import com.courseproject.mycontractitegration.data.Msg;
 import com.courseproject.mycontractitegration.data.source.repository.ContractLocalDataSource;
 import com.courseproject.mycontractitegration.friendManage.FriendModel;
-import com.courseproject.mycontractitegration.friendManage.HomepageActivity;
 import com.courseproject.mycontractitegration.showContractList.ContractAdapter;
-import com.courseproject.mycontractitegration.showContractList.ContractListActivity;
 import com.courseproject.mycontractitegration.showContractList.ContractListPresenter;
 import com.courseproject.mycontractitegration.showContractList.ContractListVP;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
 import cn.bmob.newim.bean.BmobIMMessage;

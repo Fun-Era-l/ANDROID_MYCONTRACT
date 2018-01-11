@@ -15,14 +15,20 @@ import com.courseproject.mycontractitegration.showContractList.ContractListActiv
 
 
 class TemplateListActivity : AppCompatActivity(),TemplateListVP.View {
-    //private var templateList: List<Template> = ArrayList<Template> ()
     lateinit private var mPresenter: TemplateListVP.Presenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.template_list_act)
-        /* 初始化mPresenter   */
+        /* 初始化mPresenter
+        **/
         mPresenter = TemplateListPresenter(TemplateDataRepo().getInstance(), this)
+        /*
+        加载模板列表
+         */
         mPresenter.loadTemplateList()
+        /*
+        点击模板项，进入模板展示页面
+         */
         val tempListView: ListView = findViewById<ListView>(R.id.template_list)
         tempListView.setOnItemClickListener(object : AdapterView.OnItemClickListener {
 

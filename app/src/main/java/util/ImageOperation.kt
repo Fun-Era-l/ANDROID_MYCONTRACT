@@ -42,7 +42,7 @@ class ImageOperation() {
     }
 
 /*
-将签名bitmap缩放至
+签名bitmap缩放
  */
     public fun scaleImage(bitmap: Bitmap?):Bitmap{
         val width = bitmap?.getWidth()

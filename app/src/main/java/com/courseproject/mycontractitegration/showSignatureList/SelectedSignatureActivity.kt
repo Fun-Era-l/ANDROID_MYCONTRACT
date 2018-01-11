@@ -32,12 +32,12 @@ class SelectedSignatureActivity : AppCompatActivity(),SignatureListVP.View {
             Toast.makeText(this@SelectedSignatureActivity,"默认签名",Toast.LENGTH_LONG).show()
         }
         val sig_bitmap:Bitmap? = ImageOperation().stringToImage(signatureItem.signature_string)
-
         mImageHolder = findViewById(R.id.selected_signature) //显示签名图片区域
         mImageHolder.setImageBitmap(sig_bitmap)
-        //mDeleteButton = findViewById(R.id.delete_signature)
         mPresenter = SignatureListPresenter(SignatureLocalDataSource().getInstance(), this)
-
+/*
+删除签名按键
+ */
         delete_signature.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 mPresenter.deleteSignatureById(signatureItem.id)
@@ -45,6 +45,9 @@ class SelectedSignatureActivity : AppCompatActivity(),SignatureListVP.View {
                 startActivity(backToList)
             }
         })
+        /*
+        设置默认签名按键
+         */
         set_default.setOnClickListener(object: View.OnClickListener
         {
             override fun onClick(p0: View?) {

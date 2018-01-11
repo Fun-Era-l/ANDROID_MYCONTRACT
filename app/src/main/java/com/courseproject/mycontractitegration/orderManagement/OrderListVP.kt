@@ -1,4 +1,4 @@
-package com.courseproject.mycontractitegration.OrderManagement
+package com.courseproject.mycontractitegration.orderManagement
 
 import com.courseproject.mycontractitegration.BasePresenter
 import com.courseproject.mycontractitegration.BaseView

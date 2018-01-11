@@ -55,6 +55,7 @@ public class ImMessageHandler extends BmobIMMessageHandler{
             Contract contract=new Contract();
             contract.setTitle(title);
             contract.setContent(content);
+            contract.save();
 
         }else {
             EventBus.getDefault().post(messageEvent);

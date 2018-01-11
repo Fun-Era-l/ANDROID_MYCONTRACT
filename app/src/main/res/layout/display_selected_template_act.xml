@@ -17,7 +17,7 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
             <Button
-                android:id="@+id/finish_edit_button"
+                android:id="@+id/use_template"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="使用该模板"

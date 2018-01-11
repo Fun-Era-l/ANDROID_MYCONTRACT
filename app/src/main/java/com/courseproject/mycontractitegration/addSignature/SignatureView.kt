@@ -7,14 +7,8 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.graphics.Bitmap
-import android.media.Image
 import android.os.Environment
-import android.widget.ImageView
 import android.widget.Toast
-import com.courseproject.mycontractitegration.R
-import com.courseproject.mycontractitegration.data.Contract
-import kotlinx.android.synthetic.main.activity_signature.view.*
-import util.ImageOperation
 import java.io.*
 
 

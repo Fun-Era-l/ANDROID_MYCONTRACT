@@ -1,4 +1,4 @@
-package com.courseproject.mycontractitegration.OrderManagement
+package com.courseproject.mycontractitegration.orderManagement
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -14,7 +14,6 @@ import com.courseproject.mycontractitegration.R
 import com.courseproject.mycontractitegration.data.CustomOrder
 import com.courseproject.mycontractitegration.data.OrderBmob
 import kotlinx.android.synthetic.main.add_edit_order_act.*
-import kotlinx.android.synthetic.main.order_display_activity.*
 
 class AddEditOrderActivity : AppCompatActivity() {
     var currentOrder:CustomOrder? = null

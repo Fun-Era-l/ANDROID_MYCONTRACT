@@ -27,13 +27,15 @@ public class RegisterActivity: AppCompatActivity() {
         val button_register:Button =findViewById(R.id.button_register_register);
         val button_code:Button = findViewById(R.id.button_register_code);
         val textView: TextView = findViewById(R.id.textvie_rlogin);
+        /*
+        发送验证码按键监听
+         */
         button_code.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view:View) {
                 BmobSMS.requestSMSCode(phone.text.toString(), "message", object: QueryListener<Int>() {
                    override fun done(integer:Int?, e: BmobException?) {
                         if (e==null){
                             Toast.makeText(this@RegisterActivity,"验证码已成功发送",Toast.LENGTH_SHORT).show();
-
                         }else {
                             Toast.makeText(this@RegisterActivity,"error:"+e.message,Toast.LENGTH_LONG).show();
                         }
@@ -41,6 +43,9 @@ public class RegisterActivity: AppCompatActivity() {
                 });
             }
         });
+        /*
+        输入验证码后监听注册按键
+         */
         button_register.setOnClickListener(object :View.OnClickListener{
             override fun onClick(view:View) {
                 var code:EditText =findViewById(R.id.edittext_register_code);
@@ -55,7 +60,6 @@ public class RegisterActivity: AppCompatActivity() {
                             //注册成功跳转回登录界面
                             val intent: Intent =Intent(this@RegisterActivity,LoginActivity::class.java)
                             startActivity(intent);
-
                         }else {
                             Toast.makeText(this@RegisterActivity,"失败："+e?.message,Toast.LENGTH_SHORT).show();
                         }
@@ -63,6 +67,9 @@ public class RegisterActivity: AppCompatActivity() {
                 });
             }
         });
+        /*
+        已有账号的情况下，点击提示信息进入登录页面
+         */
         textView.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view:View) {
                 val intent: Intent =Intent(this@RegisterActivity,LoginActivity::class.java)

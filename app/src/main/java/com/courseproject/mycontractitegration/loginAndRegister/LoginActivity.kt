@@ -26,12 +26,13 @@ public class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login);
         val bmobAppKey:String = this.getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.getString("Bmob_APP_KEY")
         Bmob.initialize(this,bmobAppKey);
-        //BmobIM.init(this);
-        //BmobIM.registerDefaultMessageHandler(ImMessageHandler());
         var button:Button = findViewById<Button>(R.id.button_login);
         var register: TextView =findViewById<TextView>(R.id.textview_register);
         val phone: EditText = findViewById<EditText>(R.id.edittext_phone);
         val password:EditText=findViewById<EditText>(R.id.edittext_password);
+        /*
+        登录按键监听，成功后进入首页-contractlist界面
+         */
         button.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?){
                 BmobUser.loginByAccount( phone.text.toString(), password.text.toString(), object: LogInListener<BmobUser>()
@@ -50,6 +51,9 @@ public class LoginActivity : AppCompatActivity() {
                 })
             }
         })
+        /*
+        点击提示信息，进入注册界面
+         */
         register.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view:View) {
                 var intent:Intent= Intent(this@LoginActivity,RegisterActivity::class.java)
