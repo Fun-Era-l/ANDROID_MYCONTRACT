@@ -33,6 +33,9 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    /*
+    kotlin / okhttp / retrofit / litepal / picasso / Bmob / TinyPinYin / EventBus 依赖
+     */
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.squareup.okhttp3:okhttp:3.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -43,18 +46,10 @@ dependencies {
     implementation files('libs/BmobSDK_3.5.8_20171013.jar')
     implementation files('libs/BmobNewIM_2.0.9_20170731.jar')
     implementation files('libs/androidasync-2.1.6.jar')
-    //implementation files('libs/BmobNewIM_2.0.9_20170731.jar')
-    //implementation files('libs/androidasync-2.1.6.jar')
 
     compile 'com.github.promeg:tinypinyin:2.0.3' // TinyPinyin 核心包，约 80KB
     compile 'org.greenrobot:eventbus:3.1.1'
 
-    //bmob 依赖
-    //implementation 'cn.bmob.android:http-legacy:1.0'
-    //implementation 'cn.bmob.android:bmob-sdk:3.5.6'
-    //litepal
-    //multidex
-    //implementation 'com.android.support:multidex:1.0.2'
     implementation 'com.pingxx:pingpp-core:2.1.16' // 必须添加
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+' // 使用微信支付时添加,具体版本参考微信官方文档
     implementation 'com.pingxx:pingpp-alipay:2.1.16' // 使用支付宝时添加
@@ -62,7 +57,4 @@ dependencies {
     implementation 'com.pingxx:pingpp-qpay:2.1.16' // 使用QQ钱包时添加
     implementation 'com.pingxx:pingpp-cmbwallet:2.1.16' // 使用招行一网通时添加
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 093f47417f2306e0ba296bfa2cf898a6dd725a0e

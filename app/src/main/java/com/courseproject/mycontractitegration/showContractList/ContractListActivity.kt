@@ -20,6 +20,7 @@ import com.courseproject.mycontractitegration.addeditcontract.AddEditContractAct
 import com.courseproject.mycontractitegration.showTemplateList.TemplateListActivity
 import com.courseproject.mycontractitegration.data.Contract
 import com.courseproject.mycontractitegration.data.source.repository.ContractLocalDataSource
+import com.courseproject.mycontractitegration.friendManage.FriendListActivity
 import com.courseproject.mycontractitegration.showSignatureList.SignatureListActivity
 import kotlinx.android.synthetic.main.contract_list_act.*
 
@@ -117,6 +118,8 @@ class ContractListActivity : AppCompatActivity(),ContractListVP.View, Navigation
 
                 }
                 R.id.nav_contacts -> {
+                    val nav2FriendList:Intent = Intent(this@ContractListActivity,FriendListActivity::class.java)
+                    startActivity(nav2FriendList)
                 }
                 R.id.nav_order -> {
                     val nav2SignatureList:Intent = Intent(this@ContractListActivity,OrderListActivity::class.java)

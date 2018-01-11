@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.courseproject.mycontractitegration.R;
 import com.courseproject.mycontractitegration.data.Contract;
 import com.courseproject.mycontractitegration.data.Msg;
-import com.courseproject.mycontractitegration.data.source.local.ContractLocalDataSource;
+import com.courseproject.mycontractitegration.data.source.repository.ContractLocalDataSource;
 import com.courseproject.mycontractitegration.friendManage.FriendModel;
 import com.courseproject.mycontractitegration.friendManage.HomepageActivity;
 import com.courseproject.mycontractitegration.showContractList.ContractAdapter;
@@ -87,6 +87,7 @@ public class ContractActivity extends AppCompatActivity implements ContractListV
                                                 public void done(BmobIMMessage bmobIMMessage, BmobException e) {
                                                     if (e==null){
                                                         Toast.makeText(ContractActivity.this,"已发送",Toast.LENGTH_SHORT).show();
+                                                        finish();
                                                     }else {
                                                         Toast.makeText(ContractActivity.this,"发送失败",Toast.LENGTH_SHORT).show();
                                                     }
