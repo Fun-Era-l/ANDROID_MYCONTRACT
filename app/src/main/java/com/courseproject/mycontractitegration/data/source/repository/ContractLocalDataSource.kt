@@ -67,4 +67,8 @@ override fun signContract(title: String,callback: ContractDataSource.SignContrac
         callback.onSignFailed()
     }
 }
+
+    override fun deleteContract(id: Long, callBack: ContractDataSource.DeleteContractCallBack) {
+        callBack.onDeleteContract(DataSupport.delete(Contract::class.java,id)>0)
+    }
 }

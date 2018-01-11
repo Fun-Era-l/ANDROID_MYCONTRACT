@@ -13,14 +13,14 @@
         android:id="@+id/delete_signature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DELETE"
+        android:text="删除签名"
         app:layout_constraintTop_toBottomOf="@id/selected_signature"
         />
     <Button
         android:id="@+id/set_default"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SET AS DEFAULT"
+        android:text="设为默认签名"
         app:layout_constraintTop_toBottomOf="@+id/selected_signature"
         app:layout_constraintLeft_toRightOf="@+id/delete_signature"
         />

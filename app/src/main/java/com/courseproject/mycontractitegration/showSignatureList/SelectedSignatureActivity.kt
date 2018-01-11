@@ -73,6 +73,7 @@ class SelectedSignatureActivity : AppCompatActivity(),SignatureListVP.View {
         if(isSet)
         {
             Toast.makeText(this@SelectedSignatureActivity,"成功设置默认签名",Toast.LENGTH_LONG).show()
+            startActivity(Intent(this@SelectedSignatureActivity,SignatureListActivity::class.java))
         }
         else
         {

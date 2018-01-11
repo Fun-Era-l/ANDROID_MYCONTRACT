@@ -29,10 +29,6 @@ class TextWithImage {
             val item:String = matcher.group()
             anchors.add(matcher.start())
             anchors.add(matcher.end())
-            for(i in anchors.indices)
-            {
-                Log.d("TAG ","元素:${i}:${anchors[i]}")
-            }
             val i_pattern= Pattern.compile("'..........'")
             val i_matcher=i_pattern.matcher(item)
             var objId = ""
@@ -44,20 +40,14 @@ class TextWithImage {
             query.getObject(objId, object : QueryListener<SignatureBmob>() {
                 override fun done(queryObj: SignatureBmob, e: BmobException?) {
                     if (e == null) {
-                        val start:Int = anchors[count]
+                        val start: Int = anchors[count]
                         count += 1
-                        val end:Int = anchors[count]
+                        val end: Int = anchors[count]
                         count += 1
-
-                        Log.d("TAG","开始：${start},结束: ${end}")
-                        Log.d("TAG", "签名string: ${queryObj.signature_string}")
-                        var sig_bitmap:Bitmap? = ImageOperation().stringToImage(queryObj.signature_string)
-                        Log.d("TAG", "标志一")
-                        val imageSpan =  ImageSpan(context,sig_bitmap, ImageSpan.ALIGN_BASELINE);
-                        mSpannableStringBuilder.setSpan(imageSpan,start,end, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                        Log.d("TAG", "标志二")
+                        var sig_bitmap: Bitmap? = ImageOperation().stringToImage(queryObj.signature_string)
+                        val imageSpan = ImageSpan(context, sig_bitmap, ImageSpan.ALIGN_BASELINE);
+                        mSpannableStringBuilder.setSpan(imageSpan, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                         editText.setText(mSpannableStringBuilder)
-                        Log.d("TAG", "失败仍失败")
                     }
                     else{
                         Log.d("TAG", "失败：")

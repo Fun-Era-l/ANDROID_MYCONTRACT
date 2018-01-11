@@ -11,7 +11,6 @@
     <!-- sd卡存储 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!-- 摄像头 -->
     <uses-permission android:name="android.permission.CAMERA" />
@@ -19,31 +18,22 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- 通知震动 -->
     <uses-permission android:name="android.permission.VIBRATE" />
-
-    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
 
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:sharedUserId="android.uid.system"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="BMOB_APP_KEY"
-            android:value="ebd1120bf9829898687b4f2cb332df4b" />
 
-
-        <activity android:name=".showContractList.ContractListActivity"/>
-        <activity
-            android:name=".addeditcontract.AddEditContractActivity"/>
-            <!--android:theme="@style/Theme.AppCompat.Light.NoActionBar" />-->
-
-        <!--TODO 集成：1.5、配置IM SDK需要的广播和服务-->
-        <receiver android:name="cn.bmob.newim.core.ConnectChangeReceiver" >
+        <!-- TODO 集成：1.5、配置IM SDK需要的广播和服务 -->
+        <receiver android:name="cn.bmob.newim.core.ConnectChangeReceiver">
             <intent-filter>
                 <action android:name="cn.bmob.action.RECONNECT" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -51,6 +41,7 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
+
         <service
             android:name="cn.bmob.newim.core.service.BmobIMService"
             android:process=":bmobcore" />
@@ -63,34 +54,83 @@
         <meta-data
             android:name="Bmob_APP_KEY"
             android:value="ebd1120bf9829898687b4f2cb332df4b" />
-        
+
+        <activity
+            android:name=".showContractList.ContractListActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".addeditcontract.AddEditContractActivity"
+            android:label="编辑合同"/>
+        <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> -->
 
         <activity
             android:name=".showTemplateList.TemplateListActivity"
-            android:label="Template List" />
+            android:label="模板列表" />
         <activity
             android:name=".showTemplateList.DisplaySelectedTemplateActivity"
-            android:label="Display Template" />
+            android:label="当前模板"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".loginAndRegister.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".loginAndRegister.LoginActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".loginAndRegister.RegisterActivity" />
-        <activity android:name=".addSignature.AddSignatureActivity"/>
-        <activity android:name=".showSignatureList.SignatureListActivity"/>
-        <activity android:name=".showSignatureList.SelectedSignatureActivity" />
-        <activity android:name=".signContract.SignContractActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            />
 
-       
-        <activity android:name=".friendManage.FriendListActivity"></activity>
+        <activity android:name=".friendManage.FriendListActivity" />
         <activity android:name=".friendManage.AddFriendActivity" />
-        <activity android:name=".sendMessage.ChatActivity"></activity>
+        <activity android:name=".sendMessage.ChatActivity" />
+        <activity android:name=".friendManage.HomepageActivity" />
+        <activity android:name=".sendContract.ContractActivity"></activity>
+
+        <activity android:name=".addSignature.AddSignatureActivity"
+            android:label="手写签名"
+            />
+        <activity android:name=".showSignatureList.SignatureListActivity"
+            android:label="我的签名"/>
+        <activity android:name=".showSignatureList.SelectedSignatureActivity"
+            android:label="当前签名"/>
+        <activity
+            android:name=".signContract.SignContractActivity"
+            android:label="合同签名"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity android:name=".friendManage.FriendListActivity" />
+        <activity android:name=".friendManage.AddFriendActivity" />
+        <activity android:name=".sendMessage.ChatActivity" />
+        <activity android:name=".OrderManagement.OrderListActivity"
+            android:label="代写服务订单"
+            />
+        <activity
+            android:name=".OrderManagement.DisplayOrderActivity"
+            android:label="订单详情"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".OrderManagement.AddEditOrderActivity"
+            android:label="订单编辑"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".issueHandler.IssueActivity"></activity>
+        <activity
+            android:name="com.pingplusplus.android.PaymentActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+
     </application>
 
 </manifest>

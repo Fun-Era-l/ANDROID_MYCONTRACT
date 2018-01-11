@@ -13,19 +13,23 @@
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:divider="#0000"/>
+    <TextView
+        android:id="@+id/tv_show_sendMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/input_text"
+            android:id="@+id/edt_msg"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:hint="输入你想说的话"
             android:maxLines="2"/>
         <Button
-            android:id="@+id/send"
+            android:id="@+id/btn_send"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="发送"/>

@@ -16,10 +16,10 @@ class MyApplication: Application() {
         context = getApplicationContext()
         LitePal.initialize(context)
 
+       
         val bmobAppKey:String = this.getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.getString("Bmob_APP_KEY")
         Bmob.initialize(this,bmobAppKey);
         BmobIM.init(this);
-        BmobIM.registerDefaultMessageHandler(MessageHandler());
+        BmobIM.registerDefaultMessageHandler(ImMessageHandler(this));
 
-    }
 }

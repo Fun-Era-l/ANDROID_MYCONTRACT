@@ -22,6 +22,10 @@ interface ContractDataSource {
         fun onContractIsSigned()
         fun onSignFailed()
     }
+    interface DeleteContractCallBack{
+        fun onDeleteContract(isDeleted:Boolean)
+    }
+    fun deleteContract(id:Long,callBack:DeleteContractCallBack)
     fun signContract(title: String,callback: SignContractCallBack)
     fun getContracts(callback: loadContractsCallback)
     fun saveContract(title:String, content:String,callback:SaveContractCallback)
